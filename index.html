@@ -11,8 +11,23 @@
 </head>
 <body>
 
-    <div id="app">
-        <ul v-show="rndm_mails.length === 10" class="mailing-list">
+    <div id="app" class="container vh-100 d-flex flex-column justify-content-center">
+        <div class="mb-3 d-flex flex-column justify-content-center gap-3">
+            <label for="number" class="form-label">Quante email vuoi generare?</label>
+            <input
+                type="text"
+                class="form-control"
+                id="number"
+                v-model="n"
+                @keyup.enter="mailGenerator()"
+                placeholder="Inserisci un numero intero.."
+            />
+            <button 
+            @click="mailGenerator()"
+            class="btn btn-primary align-self-baseline">Genera</button>
+        </div>
+        
+        <ul v-show="rndm_mails.length == n" class="mailing-list">
             <li v-for="mail in rndm_mails"> {{ mail }} </li>
         </ul>
     </div>
